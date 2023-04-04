@@ -31,24 +31,24 @@
   	</div>
   	
   	<div class="card border-white text-bg-dark mb-3">
-	  <div class="card-header">
-	  	<h2>Header</h2><br>
-		  <div class="d-flex justify-content-between">
-		  	<div class="d-flex">
-		  		<div><span class="text-warning">게시글 번호:</span> 1</div>
-		  		<div class="mx-2"><span class="text-warning">작성자:</span> 홍길동</div>
-		  	</div>
-		  	<div class="d-flex">
-		  		<div><span class="text-warning">작성일:</span> yy-dd-mm</div>
-		  		<div class="mx-2"><span class="text-warning">조회수:</span> 15</div>
-		  	</div>
-	  	  </div>
-	  </div>
-	  <hr class="border-white">
 	  <div class="card-body">
-		<div class="mb-3">
-		  <textarea class="form-control bg-dark text-white col-sm-5 fs-14" rows="20" readonly>글 내용</textarea>
-		</div>
+	  	<form action="/view/board/write" method="post" action="row">
+	  	  <div class="mb-3">
+			<label class="px-2" for="title"><h4>제목</h4></label>
+			<input type="text" class="form-control bg-dark text-white" name="title" id="title" placeholder="제목을 입력해 주세요">
+		  </div>
+		  
+		  <div class="mb-3">
+			<label class="px-2" for="title"><h4>작성자</h4></label>
+			<input type="text" class="form-control bg-dark text-white" name="title" id="title" placeholder="작성자를 입력해 주세요">
+		  </div>
+
+		  <div class="mb-3">
+			<label class="px-2" for="content"><h4>내용</h4></label>
+			<textarea class="form-control bg-dark text-white" rows="20" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+		  </div>
+	  	</form>
+
 	  </div>
 	</div>
 	

@@ -7,7 +7,17 @@
 <mapper namespace="com.dong.board.dao.BoardDao">
   
   <select id="getList" resultType="com.dong.board.entity.Board">
-   	select * from board
+	  select * from board 
+	    	where ${field} like '%${query}%' 
+				order by regdate desc limit #{offset}, #{size}
   </select>
-  
+  <select id="getCount" resultType="_int">
+  	select count(*) from board where ${field} like '%${query}%'
+  </select>
+  <select id="checkId" parameterType="string" resultType="_int">
+  	select count(*) from member where userId = #{userId}
+  </select>
+  <insert id="joinInsert" parameterType="com.dong.board.entity.Member">
+  	insert into member values(#{id}, #{userId}, #{userPw}, #{userName}, #{addr1}, #{addr2}, #{addr3}, "ROLE_USER", 1)
+  </insert>
 </mapper>
