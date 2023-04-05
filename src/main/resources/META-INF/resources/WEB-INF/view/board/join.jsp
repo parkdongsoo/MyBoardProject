@@ -52,26 +52,33 @@
 			form.userName.focus();
 			return false;
 		}
+		if(confirm('회원가입을 하시겠습니까?')){
 		
 		form.submit();
+		alert('회원가입이 완료되었습니다.')
 		JoinForm__submitDone == true;
+		}
 	}
 	
 	function checkId(){
-        var userId = $('#userId').val(); //id값이 "id"인 입력란의 값을 저장
+        var userId = $('#userId').val();
         $.ajax({
-            url:'/checkId', //Controller에서 요청 받을 주소
-            type:'post', //POST 방식으로 전달
+            url:'/checkId',
+            type:'post',
             data:{'userId':userId},
-            success:function(checkId){ //컨트롤러에서 넘어온 cnt값을 받는다 
-                if(checkId == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+            success:function(checkId){
+                if(checkId == 0 && userId.length > 0){
                     $('.id_ok').css("display","inline-block"); 
                     $('.id_already').css("display", "none");
-                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('#signupbtn').prop("disabled", false);
+                } else if(checkId != 0 && userId.length > 0){
                     $('.id_already').css("display","inline-block");
                     $('.id_ok').css("display", "none");
-                    
-                }
+                    $('#signupbtn').prop("disabled", true);
+                }else {
+                    $('.id_already').css("display","none");
+                    $('.id_ok').css("display", "none");
+                    $('#signupbtn').prop("disabled", true);}
             },
             error:function(){
                 alert("에러입니다");
@@ -79,6 +86,7 @@
         });
         };
 </script>
+
 </head>
 <style>
 	a{text-decoration: none; color: white;}
@@ -130,18 +138,18 @@
 		  </div>
 		  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>주소</h6></label>
-			<input type="text" class="form-control bg-dark text-white" name="addr1" placeholder="우편번호">
+			<input type="text" class="form-control bg-dark text-white" id="addr1" name="addr1" placeholder="우편번호" readonly onclick="findAddr()">
 		  </div>
 		  <div class="mb-3">
-			<input type="text" class="form-control bg-dark text-white" name="addr2" placeholder="도로명 주소">
+			<input type="text" class="form-control bg-dark text-white" id="addr2" name="addr2" placeholder="도로명 주소" readonly>
 		  </div>
 		  <div class="mb-3">
-			<input type="text" class="form-control bg-dark text-white" name="addr3" placeholder="나머지 주소를 입력해 주세요">
+			<input type="text" class="form-control bg-dark text-white" id="addr3" name="addr3" placeholder="나머지 주소를 입력해 주세요">
 		  </div>
 		  
 		  <div class="mb-3 text-center">
 		  	<input type="button" class="btn btn-outline-danger btn-lg px-5 mt-3" value="취소">
-		  	<input type="submit" class="btn btn-outline-primary btn-lg px-5 mt-3" value="회원가입">
+		  	<input type="submit" id="signupbtn" class="btn btn-outline-primary btn-lg px-5 mt-3" disabled="disabled" value="회원가입">
 		  </div>
 	  	</form>
 
@@ -149,9 +157,32 @@
 	</div>
 	
 </article>
+<script>
+function findAddr(){
+	new daum.Postcode({
+        oncomplete: function(data) {
+        	
+        	console.log(data);
+        	
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('addr1').value = data.zonecode;
+            if(roadAddr !== ''){
+                document.getElementById("addr2").value = roadAddr;
+            } 
+            else if(jibunAddr !== ''){
+                document.getElementById("addr2").value = jibunAddr;
+            }
+        }
+    }).open();
+}
+</script>
     
-    
-    
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
