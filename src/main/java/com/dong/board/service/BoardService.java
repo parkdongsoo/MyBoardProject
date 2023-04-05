@@ -14,4 +14,6 @@ public interface BoardService {
 	int checkId(String userId);
 
 	int joinInsert(Member member);
+
+    Board getView(int id);
 }

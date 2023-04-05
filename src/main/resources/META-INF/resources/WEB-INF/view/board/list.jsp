@@ -54,7 +54,7 @@
         <c:forEach var="b" items="${list}">
 	        <tr class="text-white">
 	            <td>${b.id}</td>
-	            <td><a href="/view/board/view">${b.title}</a></td>
+	            <td><a href="/view/board/view?id=${b.id}">${b.title}</a></td>
 	            <td>${b.memberName}</td>
 	            <td>${b.content}</td>
 	            <td>${b.regdate}</td>
@@ -65,7 +65,7 @@
     </table>
 	
 	<form class="text-lg-end" action="/view/board/list" method="get">
-		<input class="btn btn-primary" type="button" value="글쓰기">
+		<input class="btn btn-secondary" type="button" value="글쓰기">
 	</form>  
 	
 	<nav class="d-flex justify-content-center">
@@ -77,25 +77,25 @@
 			
 			<li class="page-item">
 				<c:if test="${startNum>1}">
-					<a class="page-link" href="?p=${startNum}&f=${param.f}&q=${param.q}">&lt;</a>
+					<a type="button" class="page-link bg-dark text-warning border-danger" href="?p=${startNum}&f=${param.f}&q=${param.q}">&lt;</a>
 				</c:if>
 				<c:if test="${startNum<=1}">
-					<a class="page-link" href="?p=1&f=${param.f}&q=${param.q}" onclick="alert('이전 페이지가 없습니다.');">&lt;</a>
+					<a class="page-link bg-dark text-warning border-danger" href="?p=1&f=${param.f}&q=${param.q}" onclick="alert('이전 페이지가 없습니다.');">&lt;</a>
 				</c:if>
 			</li>
 			<c:forEach var="i" begin="0" end="4">
 				<li class="page-item">
 					<c:if test="${i+startNum <= lastNum}">
-						<a class="page-link" href="?p=${i+startNum}&f=${param.f}&q=${param.q}">${startNum+i}</a>
+						<a class="page-link bg-dark text-warning border-danger" href="?p=${i+startNum}&f=${param.f}&q=${param.q}">${startNum+i}</a>
 					</c:if>
 				</li>
 			</c:forEach>
 			<li class="page-item">
 				<c:if test="${startNum+5 <= lastNum}">
-					<a class="page-link" href="?p=${startNum+5}&f=${param.f}&q=${param.q}">&gt;</a>
+					<a class="page-link bg-dark text-warning border-danger" href="?p=${startNum+5}&f=${param.f}&q=${param.q}">&gt;</a>
 				</c:if>
 				<c:if test="${startNum+5 > lastNum}">
-					<a class="page-link" href="?p=${lastNum}&f=${param.f}&q=${param.q}" onclick="alert('다음 페이지가 없습니다.');">&gt;</a>
+					<a class="page-link bg-dark text-warning border-danger" href="?p=${lastNum}&f=${param.f}&q=${param.q}" onclick="alert('다음 페이지가 없습니다.');">&gt;</a>
 				</c:if>
 			</li>
 		</ul>

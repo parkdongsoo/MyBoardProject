@@ -32,35 +32,33 @@
   	
   	<div class="card border-white text-bg-dark mb-3">
 	  <div class="card-header">
-	  	<h2>Header</h2><br>
+	  	<h2>${board.title}</h2><br>
 		  <div class="d-flex justify-content-between">
 		  	<div class="d-flex">
-		  		<div><span class="text-warning">게시글 번호:</span> 1</div>
-		  		<div class="mx-2"><span class="text-warning">작성자:</span> 홍길동</div>
+		  		<div><span class="text-warning">게시글 번호:</span>${board.id}</div>
+		  		<div class="mx-2"><span class="text-warning">작성자:</span>${board.memberName}</div>
 		  	</div>
 		  	<div class="d-flex">
-		  		<div><span class="text-warning">작성일:</span> yy-dd-mm</div>
-		  		<div class="mx-2"><span class="text-warning">조회수:</span> 15</div>
+		  		<div><span class="text-warning">작성일:</span><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+		  		<div class="mx-2"><span class="text-warning">조회수:</span>${board.hit}</div>
 		  	</div>
 	  	  </div>
 	  </div>
 	  <hr class="border-white">
 	  <div class="card-body">
 		<div class="mb-3">
-		  <textarea class="form-control bg-dark text-white col-sm-5 fs-14" rows="20" readonly>글 내용</textarea>
+		  <textarea class="form-control bg-dark text-white col-sm-5 fs-14" rows="20" readonly>${board.content}</textarea>
 		</div>
 	  </div>
 	</div>
 	
 	<form class="text-lg-end" action="/view/board/list" method="get">
-		<input class="btn btn-primary" type="button" value="목록">
-		<input class="btn btn-primary" type="button" value="수정">
-		<input class="btn btn-primary" type="button" value="삭제">
+		<a href="/view/board/list" class="btn btn-secondary" type="button">목록</a>
+		<a href="/view/board/update" class="btn btn-success" type="button">수정</a>
+		<a href="/view/board/delete" class="btn btn-danger" type="button">삭제</a>
 	</form>  
 	
 </article>
-    
-    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>

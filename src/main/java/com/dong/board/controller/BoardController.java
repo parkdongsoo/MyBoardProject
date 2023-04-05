@@ -3,6 +3,7 @@ package com.dong.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,9 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@RequestMapping(value={"/","view/board/list"})
 	public String list(Model model, 
 			@RequestParam(name = "p", required = false, defaultValue = "1") int page,
@@ -36,8 +40,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/view/board/view")
-	public String view() {
-		
+	public String view(int id,Model model) {
+		Board board = boardService.getView(id);
+		model.addAttribute("board",board);
+		System.out.println(board);
 		return "view.board.view";
 	}
 	
@@ -53,19 +59,23 @@ public class BoardController {
 		return "view.board.update";
 	}
 	
-	@RequestMapping("/view/board/login")
+	@RequestMapping("/view/member/login")
 	public String login() {
 		
-		return "view.board.login";
+		return "view.member.login";
 	}
 	
-	@GetMapping("/view/board/join")
+	@GetMapping("/view/member/join")
 	public String joinForm() {
-		return "view.board.join";
+		return "view.member.join";
 	}
 	
-	@PostMapping("/view/board/join")
+	@PostMapping("/view/member/join")
 	public String join(Member member) {
+		
+		String password = passwordEncoder.encode(member.getUserPw());
+		member.setUserPw(password);
+		
 		int result = boardService.joinInsert(member);
 		System.out.println(result);
 		return "redirect:/view/board/list";

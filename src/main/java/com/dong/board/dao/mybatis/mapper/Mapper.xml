@@ -20,4 +20,10 @@
   <insert id="joinInsert" parameterType="com.dong.board.entity.Member">
   	insert into member values(#{id}, #{userId}, #{userPw}, #{userName}, #{addr1}, #{addr2}, #{addr3}, "ROLE_USER", 1)
   </insert>
+  <select id="getId" parameterType="string" resultType="com.dong.board.entity.Member">
+  	select * from member where userId=#{userId}
+  </select>
+  <select id="getView" parameterType="_int" resultType="com.dong.board.entity.Board">
+  	select * from board where id=#{id}
+  </select>
 </mapper>

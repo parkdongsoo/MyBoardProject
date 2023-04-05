@@ -116,7 +116,7 @@
 	  		
 	  		<!-- ------------	폼 태그	-------------- -->
 	  		
-	  	<form action="/view/board/join" method="post" action="row" onsubmit="JoinForm__submit(this); return false">
+	  	<form action="/view/member/join" method="post" action="row" onsubmit="JoinForm__submit(this); return false">
 	  	  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>아이디</h6></label>
 			<input type="text" maxlength="30" autocomplete="off" class="form-control bg-dark text-white" id="userId" name="userId" oninput="checkId()" placeholder="아이디를 입력해 주세요">

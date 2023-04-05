@@ -43,4 +43,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.joinInsert(member);
 	}
 
+	@Override
+	public Board getView(int id) {
+		
+		return boardDao.getView(id);
+	}
+
 }

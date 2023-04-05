@@ -8,7 +8,7 @@ public class Member {
 	private String addr1;
 	private String addr2;
 	private String addr3;
-	private String role;
+	private Role role;
 	private boolean enabled;
 	
 	public Member() {
@@ -16,8 +16,7 @@ public class Member {
 	}
 
 	public Member(int id, String userId, String userPw, String userName, String addr1, String addr2, String addr3,
-			String role, boolean enabled) {
-		super();
+			Role role, boolean enabled) {
 		this.id = id;
 		this.userId = userId;
 		this.userPw = userPw;
@@ -85,11 +84,11 @@ public class Member {
 		this.addr3 = addr3;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
