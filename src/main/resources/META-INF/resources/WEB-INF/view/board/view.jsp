@@ -52,11 +52,11 @@
 	  </div>
 	</div>
 	
-	<form class="text-lg-end" action="/view/board/list" method="get">
+	<div class="text-lg-end">
 		<a href="/view/board/list" class="btn btn-secondary" type="button">목록</a>
 		<a href="/view/board/update" class="btn btn-success" type="button">수정</a>
 		<a href="/view/board/delete" class="btn btn-danger" type="button">삭제</a>
-	</form>  
+	</div>  
 	
 </article>
     

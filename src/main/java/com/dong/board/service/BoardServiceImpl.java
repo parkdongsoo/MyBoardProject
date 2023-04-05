@@ -49,4 +49,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.getView(id);
 	}
 
+	@Override
+	public int write(Board board) {
+		
+		return boardDao.write(board);
+	}
+
 }

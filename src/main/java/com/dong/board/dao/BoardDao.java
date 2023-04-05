@@ -23,4 +23,6 @@ public interface BoardDao {
 
 	public Board getView(int id);
 
+	public int write(Board board);
+
 }

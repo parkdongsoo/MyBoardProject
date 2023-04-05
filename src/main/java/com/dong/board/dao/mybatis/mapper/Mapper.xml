@@ -26,4 +26,7 @@
   <select id="getView" parameterType="_int" resultType="com.dong.board.entity.Board">
   	select * from board where id=#{id}
   </select>
+  <insert id="write" parameterType="com.dong.board.entity.Board">
+  	insert into board values(#{title}, #{memberName}, #{content}, #{regdate}, #{hit}, #{pub}, #{memberId})
+  </insert>
 </mapper>

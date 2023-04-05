@@ -29,14 +29,16 @@
   		<h1 class="fw-bold my-5">게시판 만들기 프로젝트</h1>
   		<p>Java, SpringBoot, Jsp, MyBatis, MySQL을 이용하여 간단한 프로젝트 만들어보기!!</p>
   	</div>
-  	<div>
-		<form action="/view/board/list" method="GET">
-			<select name="f" style="height:30px;">
+  	<div >
+		<form action="/view/board/list" method="GET" class="d-flex justify-content-end my-2">
+			<select class="bg-dark text-white rounded border-secondary" name="f" style="height:30px;">
 			  <option ${(param.f == "title")?"selected":""} value="title">제목</option>
 			  <option ${(param.f == "memberName")?"selected":""} value="memberName">작성자</option>
 			</select>
-			<input type="text" name="q" value="" />
-			<input type="submit" value="검색" />
+			<div class="mx-1">
+				<input class="bg-dark text-white border-secondary" type="text" name="q" value="" />
+				<input class="bg-dark text-white border-secondary" type="submit" value="검색" />
+			</div>
 		</form>
 	</div>
   	<table class="table border">
@@ -57,16 +59,16 @@
 	            <td><a href="/view/board/view?id=${b.id}">${b.title}</a></td>
 	            <td>${b.memberName}</td>
 	            <td>${b.content}</td>
-	            <td>${b.regdate}</td>
+	            <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	            <td>${b.hit}</td>
 	         </tr>
         </c:forEach>
         </tbody>
     </table>
 	
-	<form class="text-lg-end" action="/view/board/list" method="get">
-		<input class="btn btn-secondary" type="button" value="글쓰기">
-	</form>  
+	<div class="text-lg-end">
+		<a href="/view/board/write" class="btn btn-secondary" type="button">글쓰기</a>
+	</div>  
 	
 	<nav class="d-flex justify-content-center">
 		<c:set var="page" value="${(param.p == null)?1:param.p}" />

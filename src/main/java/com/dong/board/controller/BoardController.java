@@ -47,10 +47,15 @@ public class BoardController {
 		return "view.board.view";
 	}
 	
-	@RequestMapping("/view/board/write")
-	public String write() {
-		
+	@GetMapping("/view/board/write")
+	public String writeForm() {
 		return "view.board.write";
+	}
+	
+	@PostMapping("/view/board/write")
+	public int write(Board board) {
+		int result = boardService.write(board);
+		return result;
 	}
 	
 	@RequestMapping("/view/board/update")

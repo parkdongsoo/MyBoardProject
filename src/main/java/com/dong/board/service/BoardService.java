@@ -16,4 +16,6 @@ public interface BoardService {
 	int joinInsert(Member member);
 
     Board getView(int id);
+
+	int write(Board board);
 }

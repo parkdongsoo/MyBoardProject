@@ -40,23 +40,21 @@
 		  
 		  <div class="mb-3">
 			<label class="px-2" for="title"><h4>작성자</h4></label>
-			<input type="text" class="form-control bg-dark text-white" name="title" id="title" placeholder="작성자를 입력해 주세요">
+			<input type="text" class="form-control bg-dark text-white" name="memberName" id="title" placeholder="작성자를 입력해 주세요">
 		  </div>
 
 		  <div class="mb-3">
 			<label class="px-2" for="content"><h4>내용</h4></label>
 			<textarea class="form-control bg-dark text-white" rows="20" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
 		  </div>
+		  <div class="text-lg-end">
+			<a href="/view/board/list" class="btn btn-dark border-secondary" type="button">목록</a>
+			<input type="submit" class="btn btn-dark border-secondary" value="등록">
+		  </div>
 	  	</form>
 
 	  </div>
 	</div>
-	
-	<form class="text-lg-end" action="/view/board/list" method="get">
-		<input class="btn btn-primary" type="button" value="목록">
-		<input class="btn btn-primary" type="button" value="수정">
-		<input class="btn btn-primary" type="button" value="삭제">
-	</form>  
 	
 </article>
     
