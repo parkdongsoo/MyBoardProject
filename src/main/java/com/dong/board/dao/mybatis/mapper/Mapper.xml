@@ -27,7 +27,7 @@
   	select * from board where id=#{id}
   </select>
   <insert id="write" parameterType="com.dong.board.entity.Board">
-  	insert into board(id, title, memberName, content, regdate, hit, pub, memberid) values(#{id}, #{title}, #{memberName}, #{content}, #{regdate}, #{hit}, #{pub},#{memberId})
+  	insert into board(id, title, memberName, content, regdate, hit, pub, memberid) values(#{id}, #{title}, #{memberName}, #{content}, #{regdate}, #{hit}, #{pub}, 1)
   </insert>
   <update id="update" parameterType="com.dong.board.entity.Board">
   	update board set title=#{title}, memberName=#{memberName}, content=#{content} where id=#{id}
