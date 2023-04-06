@@ -14,7 +14,16 @@ public class Member {
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public Member(int id, String userId, String userPw, String userName, Role role, boolean enabled) {
+		this.id = id;
+		this.userId = userId;
+		this.userPw = userPw;
+		this.userName = userName;
+		this.role = role;
+		this.enabled = enabled;
+	}
+	
 	public Member(int id, String userId, String userPw, String userName, String addr1, String addr2, String addr3,
 			Role role, boolean enabled) {
 		this.id = id;

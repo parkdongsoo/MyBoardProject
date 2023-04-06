@@ -65,4 +65,16 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.delete(id);
 	}
 
+	@Override
+	public Member getUserInfo(String userId) {
+		
+		return boardDao.getUserInfo(userId);
+	}
+
+	@Override
+	public List<Member> getMemberInfo() {
+		
+		return boardDao.getMemberInfo();
+	}
+
 }

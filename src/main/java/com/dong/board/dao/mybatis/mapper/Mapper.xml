@@ -35,4 +35,10 @@
   <delete id="delete" parameterType="_int">
   	delete from board where id=#{id}
   </delete>
+  <select id="getUserInfo" parameterType="string" resultType="com.dong.board.entity.Member">
+  	select * from member where userId=#{userId}
+  </select>
+  <select id="getMemberInfo" resultType="com.dong.board.entity.Member">
+  	select * from member
+  </select>
 </mapper>

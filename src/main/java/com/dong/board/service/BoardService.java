@@ -22,4 +22,8 @@ public interface BoardService {
 	void update(Board board);
 
 	void delete(int id);
+
+	Member getUserInfo(String userId);
+
+	List<Member> getMemberInfo();
 }

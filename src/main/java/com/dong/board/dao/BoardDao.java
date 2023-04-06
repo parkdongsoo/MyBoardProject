@@ -29,4 +29,8 @@ public interface BoardDao {
 
 	public void delete(int id);
 
+	public Member getUserInfo(String userId);
+
+	public List<Member> getMemberInfo();
+
 }
