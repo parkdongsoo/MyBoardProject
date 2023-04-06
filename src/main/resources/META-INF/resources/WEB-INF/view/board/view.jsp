@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900;&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 </head>
 <style>
 	a{text-decoration: none; color: white;}
@@ -54,8 +55,8 @@
 	
 	<div class="text-lg-end">
 		<a href="/view/board/list" class="btn btn-secondary" type="button">목록</a>
-		<a href="/view/board/update" class="btn btn-success" type="button">수정</a>
-		<a href="/view/board/delete" class="btn btn-danger" type="button">삭제</a>
+		<a href="/view/board/update?id=${board.id}" class="btn btn-success" type="button">수정</a>
+		<a href="/view/board/delete?id=${board.id}" class="btn btn-danger" type="button" onclick="alert('${board.id}번 게시글이 삭제되었습니다.')">삭제</a>
 	</div>  
 	
 </article>

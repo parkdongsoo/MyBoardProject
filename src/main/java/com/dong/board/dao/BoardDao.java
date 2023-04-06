@@ -25,4 +25,8 @@ public interface BoardDao {
 
 	public int write(Board board);
 
+	public void update(Board board);
+
+	public void delete(int id);
+
 }

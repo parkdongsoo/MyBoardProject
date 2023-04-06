@@ -14,6 +14,37 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900;&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>
+<script>
+  function BoardWrite_submit(form) {
+		
+		form.title.value = form.title.value.trim();
+		if(form.title.value.length==0){
+			alert('제목을 입력해주세요.');
+			form.title.focus();
+			return false;
+		}
+		
+		form.memberName.value = form.memberName.value.trim();
+		if(form.memberName.value.length==0){
+			alert('작성자를 입력해주세요.');
+			form.memberName.focus();
+			return false;
+		}
+		
+		form.content.value = form.content.value.trim();
+		if(form.content.value.length==0){
+			alert('내용을 입력해주세요.');
+			form.content.focus();
+			return false;
+		}
+		
+		if(confirm('게시글 등록을 하시겠습니까?')){
+			form.submit();
+			alert('게시글 등록이 완료되었습니다.');
+		}
+	}
+</script>
 </head>
 <style>
 	a{text-decoration: none; color: white;}
@@ -32,7 +63,7 @@
   	
   	<div class="card border-white text-bg-dark mb-3">
 	  <div class="card-body">
-	  	<form action="/view/board/write" method="post" action="row">
+	  	<form action="/view/board/write" method="post" action="row" onsubmit="BoardWrite_submit(this); return false;">
 	  	  <div class="mb-3">
 			<label class="px-2" for="title"><h4>제목</h4></label>
 			<input type="text" class="form-control bg-dark text-white" name="title" id="title" placeholder="제목을 입력해 주세요">
@@ -40,7 +71,7 @@
 		  
 		  <div class="mb-3">
 			<label class="px-2" for="title"><h4>작성자</h4></label>
-			<input type="text" class="form-control bg-dark text-white" name="memberName" id="title" placeholder="작성자를 입력해 주세요">
+			<input type="text" class="form-control bg-dark text-white" name="memberName" id="memberName" placeholder="작성자를 입력해 주세요">
 		  </div>
 
 		  <div class="mb-3">

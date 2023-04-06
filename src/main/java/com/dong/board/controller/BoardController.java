@@ -43,7 +43,7 @@ public class BoardController {
 	public String view(int id,Model model) {
 		Board board = boardService.getView(id);
 		model.addAttribute("board",board);
-		System.out.println(board);
+		
 		return "view.board.view";
 	}
 	
@@ -53,16 +53,34 @@ public class BoardController {
 	}
 	
 	@PostMapping("/view/board/write")
-	public int write(Board board) {
+	public String write(Board board) {
 		int result = boardService.write(board);
-		return result;
+		return "redirect:/view/board/list";
 	}
 	
-	@RequestMapping("/view/board/update")
-	public String update() {
+	@GetMapping("/view/board/update")
+	public String updateForm(int id, Model model) {
+		Board board = boardService.getView(id);
+		model.addAttribute("board",board);
 		
 		return "view.board.update";
 	}
+	
+	@PostMapping("/view/board/update")
+	public String update(Board board, Model model) {
+		boardService.update(board);
+		
+		return "redirect:/view/board/view?id="+board.getId();
+	}
+	
+	
+	@RequestMapping("/view/board/delete") 
+	public String delete(int id) {
+		boardService.delete(id);
+	    
+		return "redirect:/view/board/list"; 
+	}
+	 
 	
 	@RequestMapping("/view/member/login")
 	public String login() {

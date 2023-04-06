@@ -18,4 +18,8 @@ public interface BoardService {
     Board getView(int id);
 
 	int write(Board board);
+
+	void update(Board board);
+
+	void delete(int id);
 }
