@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
@@ -26,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private AuthenticationFailureHandler customFailureHandler;
 	
+	@Autowired
+	private AuthenticationSuccessHandler customSuccessHandler;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -36,12 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeHttpRequests().antMatchers("/").permitAll();
 		http.authorizeHttpRequests().antMatchers("/view/board/write").authenticated();
+		http.authorizeHttpRequests().antMatchers("/view/board/update").authenticated();
 		http.authorizeHttpRequests().antMatchers("/view/board/delete").hasRole("ADMIN");
 		
 		http.csrf().disable();
 		
-		http.formLogin().loginPage("/view/member/login").defaultSuccessUrl("/view/board/list", true);
-		http.formLogin().loginProcessingUrl("/loginAction").usernameParameter("userId").passwordParameter("userPw").failureHandler(customFailureHandler).defaultSuccessUrl("/view/board/list", true);
+		http.formLogin().loginPage("/view/member/login");
+		http.formLogin().loginProcessingUrl("/loginAction")
+				.usernameParameter("userId").passwordParameter("userPw")
+				.successHandler(customSuccessHandler).failureHandler(customFailureHandler);
 		http.exceptionHandling().accessDeniedPage("/view/member/accessDenied");
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
 		

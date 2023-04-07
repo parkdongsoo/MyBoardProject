@@ -77,4 +77,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.getMemberInfo();
 	}
 
+	@Override
+	public void userUpdate(Member member) {
+		
+		boardDao.userUpdate(member);
+	}
+
 }

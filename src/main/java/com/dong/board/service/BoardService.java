@@ -26,4 +26,6 @@ public interface BoardService {
 	Member getUserInfo(String userId);
 
 	List<Member> getMemberInfo();
+
+	void userUpdate(Member member);
 }

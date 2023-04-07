@@ -1,7 +1,6 @@
 package com.dong.board.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -32,5 +31,7 @@ public interface BoardDao {
 	public Member getUserInfo(String userId);
 
 	public List<Member> getMemberInfo();
+
+	public void userUpdate(Member member);
 
 }

@@ -41,4 +41,7 @@
   <select id="getMemberInfo" resultType="com.dong.board.entity.Member">
   	select * from member
   </select>
+  <update id="userUpdate" parameterType="com.dong.board.entity.Member">
+  	update member set role=#{role} where id=#{id}
+  </update>
 </mapper>

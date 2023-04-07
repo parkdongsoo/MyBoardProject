@@ -29,7 +29,16 @@ public class UserInfoController {
 	    Member member=boardService.getUserInfo(userId);
 	    model.addAttribute("member", member);
 	    
-	    return "/view/member/userInfo";
+	    return "view.member.userInfo";
+	}
+	
+	@GetMapping("/view/admin/userInfo")
+	public String adminUserInfo(String userId,Model model) {
+    
+		Member member = boardService.getUserInfo(userId);
+	    model.addAttribute(member);
+	    
+	    return "view.admin.userInfo";
 	}
 	
 	
@@ -37,10 +46,18 @@ public class UserInfoController {
 	public String adminPage(Model model) {
 		
 		List<Member> memberList = boardService.getMemberInfo();
-		System.out.println(memberList);
 		
 		model.addAttribute(memberList);
 		
-		return "/view/admin/adminPage";
+		return "view.admin.adminPage";
+	}
+	
+	@GetMapping("/view/admin/userUpdate")
+	public String userUpdate(Member member) {
+		
+		System.out.println(member);
+		boardService.userUpdate(member);
+		
+		return "redirect:/view/admin/adminPage";
 	}
 }

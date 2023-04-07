@@ -4,14 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>
+  
+  <script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>
 <script>
 	var JoinForm__submitDone = false;
 	var JoinForm_checkIdDup = "";
 	
 	function JoinForm__submit(form){
 		if(JoinForm__submitDone){
-			alert('회원가입 처리중 입니다.')
+			alert('유저정보 수정중 입니다.')
 			return false;
 		}
 		
@@ -42,10 +43,10 @@
 			form.userName.focus();
 			return false;
 		}
-		if(confirm('회원가입을 하시겠습니까?')){
+		if(confirm('유저정보를 수정하시겠습니까?')){
 		
 		form.submit();
-		alert('회원가입이 완료되었습니다.')
+		alert('수정이 완료되었습니다.')
 		JoinForm__submitDone == true;
 		}
 	}
@@ -77,7 +78,7 @@
         };
 </script>
 
-
+</head>
 <style>
 	a{text-decoration: none; color: white;}
 	
@@ -89,46 +90,46 @@
 
   	<div class="card border-white text-bg-dark mb-3">
   	  <div class="card-header my-3 text-center">
-	  	<h2>회원가입 페이지</h2>
+	  	<h2>${member.userId}님 사용자 정보</h2>
 	  </div>
 	  <div class="card-body">
 	  		
 	  		<!-- ------------	폼 태그	-------------- -->
 	  		
-	  	<form action="/view/member/join" method="post" action="row" onsubmit="JoinForm__submit(this); return false">
+	  	<form action="/userInfo" method="post" action="row" onsubmit="JoinForm__submit(this); return false">
 	  	  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>아이디</h6></label>
-			<input type="text" maxlength="30" autocomplete="off" class="form-control bg-dark text-white" id="userId" name="userId" oninput="checkId()" placeholder="아이디를 입력해 주세요">
+			<input type="text" maxlength="30" value="${member.userId}" autocomplete="off" class="form-control bg-dark text-white" id="userId" name="userId" oninput="checkId()" placeholder="아이디를 입력해 주세요">
 		  	<!-- id ajax 중복체크 -->
 			<span class="id_ok">사용 가능한 아이디입니다.</span>
 			<span class="id_already">사용중인 아이디 입니다.</span>
 		  </div>
 		  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>비밀번호</h6></label>
-			<input type="password" maxlength="30" autocomplete="off" class="form-control bg-dark text-white" name="userPw" placeholder="비밀번호를 입력해 주세요">
+			<input type="password" maxlength="30" value="${member.userPw}" autocomplete="off" class="form-control bg-dark text-white" name="userPw" placeholder="비밀번호를 입력해 주세요">
 		  </div>
 		  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>비밀번호 확인</h6></label>
-			<input type="password" maxlength="30" autocomplete="off" class="form-control bg-dark text-white" name="userPw2"placeholder="비밀번호 확인란을 입력해 주세요">
+			<input type="password" maxlength="30" value="${member.userPw}" autocomplete="off" class="form-control bg-dark text-white" name="userPw2"placeholder="비밀번호 확인란을 입력해 주세요">
 		  </div>
 		  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>작성자</h6></label>
-			<input type="text" maxlength="30" autocomplete="off" class="form-control bg-dark text-white" name="userName" placeholder="이름을 입력해 주세요">
+			<input type="text" maxlength="30" value="${member.userName}"autocomplete="off" class="form-control bg-dark text-white" name="userName" placeholder="이름을 입력해 주세요">
 		  </div>
 		  <div class="mb-3">
 			<label class="px-2 text-warning" for="title"><h6>주소</h6></label>
-			<input type="text" class="form-control bg-dark text-white" id="addr1" name="addr1" placeholder="우편번호" readonly onclick="findAddr()">
+			<input type="text" class="form-control bg-dark text-white" value="${member.addr1}" id="addr1" name="addr1" placeholder="우편번호" readonly onclick="findAddr()">
 		  </div>
 		  <div class="mb-3">
-			<input type="text" class="form-control bg-dark text-white" id="addr2" name="addr2" placeholder="도로명 주소" readonly>
+			<input type="text" class="form-control bg-dark text-white" value="${member.addr2}" id="addr2" name="addr2" placeholder="도로명 주소" readonly>
 		  </div>
 		  <div class="mb-3">
-			<input type="text" class="form-control bg-dark text-white" id="addr3" name="addr3" placeholder="나머지 주소를 입력해 주세요">
+			<input type="text" class="form-control bg-dark text-white" value="${member.addr3}" id="addr3" name="addr3" placeholder="나머지 주소를 입력해 주세요">
 		  </div>
 		  
 		  <div class="mb-3 text-center">
 		  	<input type="button" class="btn btn-outline-danger btn-lg px-5 mt-3" value="취소">
-		  	<input type="submit" id="signupbtn" class="btn btn-outline-primary btn-lg px-5 mt-3" disabled="disabled" value="회원가입">
+		  	<input type="submit" id="signupbtn" class="btn btn-outline-primary btn-lg px-5 mt-3" disabled="disabled" value="회원정보 수정">
 		  </div>
 	  	</form>
 
@@ -160,3 +161,4 @@ function findAddr(){
 }
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    

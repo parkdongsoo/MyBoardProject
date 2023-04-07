@@ -18,12 +18,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler{
 
-	/*
-	 * HttpServletRequest : request 정보
-	 * HttpServletResponse : Response에 대해 설정할 수 있는 변수
-	 * AuthenticationException : 로그인 실패 시 예외에 대한 정보
-	 */
-	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
@@ -31,7 +25,7 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 		String errorMessage;
 		
 		if(exception instanceof BadCredentialsException) {
-			errorMessage = "아이디 또는 비밀번호가 맞지 않습니다. 다시 확인해주세요.";
+			errorMessage = "아이디 또는 비밀번호가 맞지 않습니다.";
 		} else if (exception instanceof InternalAuthenticationServiceException) {
 			errorMessage = "내부 시스템 문제로 로그인 요청을 처리할 수 없습니다. 관리자에게 문의하세요. ";
 		} else if (exception instanceof UsernameNotFoundException) {
