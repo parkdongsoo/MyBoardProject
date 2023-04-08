@@ -36,27 +36,27 @@
 	            <td><a href="/view/board/view?id=${b.id}">${b.title}</a></td>
 	            <td>${b.memberName}</td>
 	            <td>${b.content}</td>
-	            <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	            <td><fmt:formatDate value="${b.regdate}" pattern="yyyy-MM-dd"/></td>
 	            <td>${b.hit}</td>
 	         </tr>
         </c:forEach>
         </tbody>
     </table>
-	
+		<c:set var="page" value="${(param.p == null)?1:param.p}" />
+		<c:set var="startNum" value="${page-(page-1)%5}" />
+		<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}" />
+	<div class="text-lg-end mb-2 text-warning">page : ${page} / ${lastNum}</div>
 	<div class="text-lg-end">
 		<a href="/view/board/write" class="btn btn-secondary" type="button">글쓰기</a>
 	</div>  
 	
 	<nav class="d-flex justify-content-center">
-		<c:set var="page" value="${(param.p == null)?1:param.p}" />
-		<c:set var="startNum" value="${page-(page-1)%5}" />
-		<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}" />
 		
 		<ul class="pagination">
 			
 			<li class="page-item">
 				<c:if test="${startNum>1}">
-					<a type="button" class="page-link bg-dark text-warning border-danger" href="?p=${startNum}&f=${param.f}&q=${param.q}">&lt;</a>
+					<a type="button" class="page-link bg-dark text-warning border-danger" href="?p=${startNum-1}&f=${param.f}&q=${param.q}">&lt;</a>
 				</c:if>
 				<c:if test="${startNum<=1}">
 					<a class="page-link bg-dark text-warning border-danger" href="?p=1&f=${param.f}&q=${param.q}" onclick="alert('이전 페이지가 없습니다.');">&lt;</a>

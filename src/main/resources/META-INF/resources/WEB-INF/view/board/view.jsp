@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <style>
 	a{text-decoration: none; color: white;}
@@ -30,8 +31,20 @@
 	  </div>
 	</div>
 	
+	<sec:authentication property="principal" var="principal"/>
+	principal ID : ${principal.id}
+	
+	
+	
 	<div class="text-lg-end">
 		<a href="/view/board/list" class="btn btn-secondary" type="button">목록</a>
-		<a href="/view/board/update?id=${board.id}" class="btn btn-success" type="button">수정</a>
-		<a href="/view/board/delete?id=${board.id}" class="btn btn-danger" type="button" onclick="alert('${board.id}번 게시글이 삭제되었습니다.')">삭제</a>
+		
+		<sec:authentication property="principal" var="principal"/>
+		<sec:authorize access="isAuthenticated()">
+			<c:if test="${principal.id==board.memberId}">
+				<a href="/view/board/update?id=${board.id}" class="btn btn-success" type="button">수정</a>
+				<a href="/view/board/delete?id=${board.id}" class="btn btn-danger" type="button" onclick="alert('${board.id}번 게시글이 삭제되었습니다.')">삭제</a>
+			</c:if>
+		</sec:authorize>
+		
 	</div>  

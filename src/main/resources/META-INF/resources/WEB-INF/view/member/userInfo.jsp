@@ -124,7 +124,7 @@
 		  </div>
 		  
 		  <div class="mb-3 text-center">
-		  	<input type="button" class="btn btn-outline-danger btn-lg px-5 mt-3" value="취소">
+		  	<a href="/view/board/list" type="button" class="btn btn-outline-danger btn-lg px-5 mt-3">취소</a>
 		  	<input type="submit" id="signupbtn" class="btn btn-outline-primary btn-lg px-5 mt-3" disabled="disabled" value="회원정보 수정">
 		  </div>
 	  	</form>

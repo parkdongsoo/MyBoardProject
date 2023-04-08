@@ -34,4 +34,6 @@ public interface BoardDao {
 
 	public void userUpdate(Member member);
 
+	public void boardUpdateHit(int id);
+
 }

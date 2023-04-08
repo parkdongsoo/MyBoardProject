@@ -10,7 +10,7 @@
 
   <div class="card border-white text-bg-dark mb-3">
   	  <div class="card-header my-3 text-center">
-	  	<h2>사용자 정보</h2>
+	  	<h2>회원 관리</h2>
 	  </div>
 	  <div class="card-body">
   	<table class="table border">

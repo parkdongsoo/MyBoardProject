@@ -27,7 +27,7 @@
   	select * from board where id=#{id}
   </select>
   <insert id="write" parameterType="com.dong.board.entity.Board">
-  	insert into board(id, title, memberName, content, regdate, hit, pub, memberid) values(#{id}, #{title}, #{memberName}, #{content}, #{regdate}, #{hit}, #{pub}, 1)
+  	insert into board(id, title, memberName, content, regdate, hit, pub, memberid) values(#{id}, #{title}, #{memberName}, #{content}, now(), #{hit}, #{pub}, #{memberId})
   </insert>
   <update id="update" parameterType="com.dong.board.entity.Board">
   	update board set title=#{title}, memberName=#{memberName}, content=#{content} where id=#{id}
@@ -43,5 +43,8 @@
   </select>
   <update id="userUpdate" parameterType="com.dong.board.entity.Member">
   	update member set role=#{role} where id=#{id}
+  </update>
+  <update id="boardUpdateHit" parameterType="_int">
+  	update board set hit = hit+1 where id=#{id}
   </update>
 </mapper>

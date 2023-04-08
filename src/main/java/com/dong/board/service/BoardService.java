@@ -28,4 +28,6 @@ public interface BoardService {
 	List<Member> getMemberInfo();
 
 	void userUpdate(Member member);
+
+	void boardUpdateHit(int id);
 }

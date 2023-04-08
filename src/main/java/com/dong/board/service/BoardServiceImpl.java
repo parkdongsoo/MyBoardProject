@@ -83,4 +83,10 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.userUpdate(member);
 	}
 
+	@Override
+	public void boardUpdateHit(int id) {
+		
+		boardDao.boardUpdateHit(id);
+	}
+
 }

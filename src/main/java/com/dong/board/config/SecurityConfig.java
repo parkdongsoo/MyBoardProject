@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,6 +19,7 @@ import com.dong.board.service.UserDatailsServiceImpl;
 
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
@@ -39,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.addFilterBefore(filter, CsrfFilter.class);
 		
 		http.authorizeHttpRequests().antMatchers("/").permitAll();
-		http.authorizeHttpRequests().antMatchers("/view/board/write").authenticated();
+		http.authorizeHttpRequests().antMatchers("/view/board/view").authenticated();
 		http.authorizeHttpRequests().antMatchers("/view/board/update").authenticated();
 		http.authorizeHttpRequests().antMatchers("/view/board/delete").hasRole("ADMIN");
 		

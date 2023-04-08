@@ -3,6 +3,7 @@ package com.dong.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,7 @@ public class BoardController {
 		
 		List<Board> list = boardService.getList(page, field, query);
 		int count = boardService.getCount(field, query);
-
+		System.out.println(count);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		return "view.board.list";
@@ -41,17 +42,21 @@ public class BoardController {
 	
 	@RequestMapping("/view/board/view")
 	public String view(int id,Model model) {
+		boardService.boardUpdateHit(id);
+		
 		Board board = boardService.getView(id);
 		model.addAttribute("board",board);
 		
 		return "view.board.view";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/view/board/write")
 	public String writeForm() {
 		return "view.board.write";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/view/board/write")
 	public String write(Board board) {
 		int result = boardService.write(board);
