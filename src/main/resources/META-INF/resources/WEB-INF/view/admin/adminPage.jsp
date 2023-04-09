@@ -33,7 +33,7 @@
 		            <td>${m.userName}</td>
 			        <td>
 			          <form action="/view/admin/userUpdate" method="GET" class="d-flex justify-content-end my-2">
-			          	<input type="hidden" name="id" value="${m.userId}">
+			          	<input type="hidden" name="id" value="${m.id}">
 		            	<select class="bg-dark text-white rounded border-danger" name="role" style="height:30px;">
 						  <option ${(m.role == "ROLE_USER")?"selected":""}  value="ROLE_USER">ROLE_USER</option>
 						  <option ${(m.role == "ROLE_ADMIN")?"selected":""} value="ROLE_ADMIN">ROLE_ADMIN</option>
