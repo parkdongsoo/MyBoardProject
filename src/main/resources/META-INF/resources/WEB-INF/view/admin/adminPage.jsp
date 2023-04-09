@@ -19,8 +19,8 @@
             <th>번호</th>
             <th>아이디</th>
             <th>비밀번호</th>
-            <th>작성자</th>
-            <th>권한</th>
+            <th class="text-center">작성자</th>
+            <th class="text-center">권한</th>
          </tr>
         </thead>
         <tbody>
