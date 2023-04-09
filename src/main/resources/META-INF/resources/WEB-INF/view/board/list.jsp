@@ -4,7 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<style>
+	
+nav > ul > li > a:hover {
+	background-color: yellow;
+	border-radius: 4px;
+}
+</style>
 
   	<div >
 		<form action="/view/board/list" method="GET" class="d-flex justify-content-end my-2">
@@ -65,16 +71,16 @@
 			<c:forEach var="i" begin="0" end="4">
 				<li class="page-item">
 					<c:if test="${i+startNum <= lastNum}">
-						<a class="page-link bg-dark text-warning border-danger" href="?p=${i+startNum}&f=${param.f}&q=${param.q}">${startNum+i}</a>
+						<a class="page-link bg-dark fs-6 ${(param.p==(i+startNum))? 'text-warning':'text-white'} border-danger" href="?p=${i+startNum}&f=${param.f}&q=${param.q}">${startNum+i}</a>
 					</c:if>
 				</li>
 			</c:forEach>
 			<li class="page-item">
 				<c:if test="${startNum+5 <= lastNum}">
-					<a class="page-link bg-dark text-warning border-danger" href="?p=${startNum+5}&f=${param.f}&q=${param.q}">&gt;</a>
+					<a class="page-link bg-dark fs-6 text-warning border-danger" href="?p=${startNum+5}&f=${param.f}&q=${param.q}">&gt;</a>
 				</c:if>
 				<c:if test="${startNum+5 > lastNum}">
-					<a class="page-link bg-dark text-warning border-danger" href="?p=${lastNum}&f=${param.f}&q=${param.q}" onclick="alert('다음 페이지가 없습니다.');">&gt;</a>
+					<a class="page-link bg-dark fs-6 text-warning border-danger" href="?p=${lastNum}&f=${param.f}&q=${param.q}" onclick="alert('다음 페이지가 없습니다.');">&gt;</a>
 				</c:if>
 			</li>
 		</ul>
